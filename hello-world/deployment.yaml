@@ -2,11 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
-  namespace: hello-world
   labels:
     app: hello-world
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: hello-world
@@ -17,20 +16,20 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: nginx:alpine
+        image: hashicorp/http-echo
+        args:
+          - "-text=Hello, ArgoCD!"
         ports:
-        - containerPort: 80
+        - containerPort: 5678
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-world
-  namespace: hello-world
 spec:
+  ports:
+  - port: 80
+    targetPort: 5678
   selector:
     app: hello-world
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
   type: LoadBalancer
