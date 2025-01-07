@@ -1,0 +1,9 @@
+persistence:
+  enabled: true
+  storageClass: ""  # Specify your storage class, or leave it empty for the default
+  size: 10Gi  # Adjust the size as needed
+
+auth:
+  username: admin
+  password: rabbitmqpassword
+  erlangCookie: secretcookie
