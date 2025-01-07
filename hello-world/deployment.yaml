@@ -28,8 +28,7 @@ metadata:
   name: hello-world
 spec:
   ports:
-  - port: 80
+  - port: 5678
     targetPort: 5678
   selector:
     app: hello-world
-  type: LoadBalancer
